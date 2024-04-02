@@ -10,6 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -183,9 +184,10 @@ public class UserStories extends BaseDriver {
         mySendKeys(dc.searchBox, "notebooks", Keys.ENTER);
         myClick(dc.searchButton);
         Tools.Bekle(5);
+        scrollToElement(dc.randomProduct);
         // Verifying that a random product is displayed after performing the search
-        Assert.assertTrue(dc.randomProduct.isEmpty(), "Random product is not found.");
-        System.out.println(dc.randomProduct.size());
+        Assert.assertTrue(dc.randomProduct.isDisplayed(), "Random product is not found.");
+
 
     }
 
@@ -212,6 +214,7 @@ public class UserStories extends BaseDriver {
         myClick(dc.giftAddToCart);
         // Verifying if the validation message for recipient name is displayed
         Assert.assertTrue(dc.enterValid.getText().contains("Enter valid recipient name"), "Recipient name validation message is not displayed.");
+
         mySendKeys(dc.recipientName, "Sdet", Keys.ENTER);
         mySendKeys(dc.recipientEmail, "techno@gmail.com", Keys.ENTER);
         mySendKeys(dc.senderName, "Sdettears", Keys.ENTER);
@@ -232,6 +235,33 @@ public class UserStories extends BaseDriver {
     @Test
     public void US507() {
         DialogContent dc = new DialogContent();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        SuccessfulLogin();
+        hoverOver(dc.computers);
+        JSClick(dc.desktops);
+        JSClick(dc.buildYourOwn);
+        js.executeScript("window.scrollTo(0,750)");
+        Tools.Bekle(3);
+        JSClick(dc.addToCart);
+
+        Select ramSelect=new Select(dc.ramRandom);
+        List<WebElement> ram=ramSelect.getOptions();
+        int randomIndex = Tools.randomGenerator(ram.size());
+        ramSelect.selectByIndex(randomIndex);
+        int hddRandom= Tools.randomGenerator(dc.hddRandom.size());
+        JSClick(dc.hddRandom.get(hddRandom));
+        int osRandom=Tools.randomGenerator(dc.osVista.size());
+        JSClick(dc.osVista.get(osRandom));
+        int softwareRandom=Tools.randomGenerator(dc.softwareOption.size());
+        JSClick(dc.softwareOption.get(softwareRandom));
+        scrollToElement(dc.addToCart);
+        Tools.Bekle(3);
+        JSClick(dc.addToCart);
+        myClick(dc.shoppingCart);
+        Assert.assertTrue(dc.compCost.isDisplayed(),"Computer Cost is not displayed.");
+
+
 
     }
 

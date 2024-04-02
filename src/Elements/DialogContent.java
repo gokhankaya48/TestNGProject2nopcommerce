@@ -74,10 +74,10 @@ public class DialogContent extends BaseDriver {
     @FindBy(xpath = "(//button[text()='Search'])[1]")
     public WebElement searchButton;
     @FindBy(xpath = "//div[@class='product-item']")
-    public List<WebElement> randomProduct;
+    public WebElement randomProduct;
     @FindBy(xpath = "(//a[text()='Gift Cards '])[1]")
     public WebElement giftCards;
-    @FindBy(xpath = "//h2[@class='product-title']")
+    @FindBy(xpath = "//div[@class='item-box']")
     public List<WebElement> randomGifts;
     @FindBy(xpath = "//button[contains(@class,'cart-button')]")
     public List<WebElement> randomAddButton;
@@ -107,6 +107,20 @@ public class DialogContent extends BaseDriver {
     public WebElement isDisablePruduct;
     @FindBy(xpath = "//h1[contains(@text,'')]")
     public WebElement disPlayed;
+    @FindBy(css = "[class='product-item'][data-productid='1']")
+    public WebElement buildYourOwn;
+    @FindBy(id = "product_attribute_2")
+    public WebElement ramRandom;
+    @FindBy(xpath="//input[@name='product_attribute_3']")
+    public List<WebElement> hddRandom;
+    @FindBy(xpath = "//input[@name='product_attribute_4']")
+    public List<WebElement> osVista;
+    @FindBy(xpath = "//input[@name='product_attribute_5']")
+    public List<WebElement> softwareOption;
+    @FindBy(xpath = "//span[text()='COMP_CUST']")
+    public WebElement compCost;
+
+
 
 
 

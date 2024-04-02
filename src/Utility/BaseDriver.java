@@ -32,6 +32,7 @@ public class BaseDriver {
     }
     public void myClick(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(ExpectedConditions.visibilityOf(element));
         scrollToElement(element);
         element.click();
     }
