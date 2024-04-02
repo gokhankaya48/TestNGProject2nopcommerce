@@ -119,6 +119,8 @@ public class DialogContent extends BaseDriver {
     public List<WebElement> softwareOption;
     @FindBy(xpath = "//span[text()='COMP_CUST']")
     public WebElement compCost;
+    @FindBy(xpath = "//a[text()='Adobe Photoshop CS4']")
+    public WebElement adobePruduct;
 
 
 

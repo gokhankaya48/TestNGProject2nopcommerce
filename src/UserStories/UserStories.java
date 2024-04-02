@@ -74,7 +74,7 @@ public class UserStories extends BaseDriver {
         // Verifying if the successful message is displayed after valid login attempt
         if (email.equals("sdetearstechno@gmail.com") && password.equals("TOtechno1")) {
             Assert.assertTrue(dc.logOut.isDisplayed(), "Logout button is not displayed.");
-        }else {
+        } else {
             // Verifying if the unsuccessful message is displayed after invalid login attempt
             Assert.assertTrue(dc.msgUnsuccessful.getText().toLowerCase().contains("unsuccessful"));
         }
@@ -227,7 +227,7 @@ public class UserStories extends BaseDriver {
         myClick(dc.close);
         JSClick(dc.shoppingCart);
         Tools.Bekle(5);
-        Assert.assertTrue(dc.isDisablePruduct.getText().contains("VG_CR_025"),"Gift card is not displayed.");
+        Assert.assertTrue(dc.isDisablePruduct.getText().contains("VG_CR_025"), "Gift card is not displayed.");
 
     }
 
@@ -245,29 +245,30 @@ public class UserStories extends BaseDriver {
         Tools.Bekle(3);
         JSClick(dc.addToCart);
 
-        Select ramSelect=new Select(dc.ramRandom);
-        List<WebElement> ram=ramSelect.getOptions();
+        Select ramSelect = new Select(dc.ramRandom);
+        List<WebElement> ram = ramSelect.getOptions();
         int randomIndex = Tools.randomGenerator(ram.size());
         ramSelect.selectByIndex(randomIndex);
-        int hddRandom= Tools.randomGenerator(dc.hddRandom.size());
+        int hddRandom = Tools.randomGenerator(dc.hddRandom.size());
         JSClick(dc.hddRandom.get(hddRandom));
-        int osRandom=Tools.randomGenerator(dc.osVista.size());
+        int osRandom = Tools.randomGenerator(dc.osVista.size());
         JSClick(dc.osVista.get(osRandom));
-        int softwareRandom=Tools.randomGenerator(dc.softwareOption.size());
+        int softwareRandom = Tools.randomGenerator(dc.softwareOption.size());
         JSClick(dc.softwareOption.get(softwareRandom));
         scrollToElement(dc.addToCart);
         Tools.Bekle(3);
         JSClick(dc.addToCart);
         myClick(dc.shoppingCart);
-        Assert.assertTrue(dc.compCost.isDisplayed(),"Computer Cost is not displayed.");
-
-
-
+        Assert.assertTrue(dc.compCost.isDisplayed(), "Computer Cost is not displayed.");
     }
 
     @Test
     public void US508() {
         DialogContent dc = new DialogContent();
+        SuccessfulLogin();
+        mySendKeys(dc.searchBox, "Adobe Photoshop CS4", Keys.ENTER);
+        myClick(dc.searchButton);
+        Assert.assertTrue(dc.adobePruduct.isDisplayed(), "Adobe Photoshop Cs4 pruduct not found.");
 
     }
 
