@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="my suit" parallel="tests" thread-count="2">
+
+    <test name="test1">
+        <parameter name="BrowserTipi" value="chrome"/>
+        <parameter name="email" value="sdetearstechno@gmail.com"/>
+        <parameter name="product" value="Apple MacBook Pro 13-inch"/>
+        <parameter name="searchText" value="Adobe Photoshop CS4"/>
+        <groups>
+            <run>
+                <include name="LoginTest"/>
+                <include name="Order"/>
+                <include name="Registration"/>
+                <include name="Regression"/>
+                <include name="Search"/>
+                <include name="Smoke"/>
+                <include name="TAB Menu"/>
+                <include name="UITesting"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="US501.UserRegistration"/>
+            <class name="US502.SuccessfulLogin"/>
+            <class name="US503.InvalidLoginAttempt"/>
+            <class name="US504.VerifyMenuItemsAndSubmenu"/>
+            <class name="US505.VerifyTabMenuAndSearchFunctionality"/>
+            <class name="US506.giftShoppingTest"/>
+            <class name="US507.BuildYourOwnComputerFunctionality"/>
+            <class name="US508.SearchBoxFunctionality"/>
+        </classes>
+    </test>
+
+</suite>

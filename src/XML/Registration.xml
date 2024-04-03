@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="my suit" parallel="tests" thread-count="2">
+
+    <test name="test1">
+        <parameter name="BrowserTipi" value="chrome"/>
+        <groups>
+            <run>
+                <include name="Registration"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="US501.UserRegistration"/>
+        </classes>
+    </test>
+</suite>

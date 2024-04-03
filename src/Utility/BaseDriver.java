@@ -1,15 +1,21 @@
 package Utility;
 
+import Elements.DialogContent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.List;
@@ -17,18 +23,31 @@ import java.util.List;
 public class BaseDriver {
     public static WebDriver driver;
     public static WebDriverWait wait;
-    Logger logger = LogManager.getLogger();
+    static Logger logger = LogManager.getLogger();
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
+
     public void BaslangicIslemleri() {
+
 
         driver = new ChromeDriver();
 
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.get("https://demo.nopcommerce.com/");
+    }
+    @Test(groups = {"LoginTest", "Smoke"},alwaysRun = true)
+    public void SuccessfulLogin() {
+        DialogContent dc = new DialogContent();
+        myClick(dc.login);
+        mySendKeys(dc.email, "sdetearstechno@gmail.com", Keys.ENTER);
+        mySendKeys(dc.password, "TOtechno1", Keys.ENTER);
+        myClick(dc.loginButton);
+
+        // Verifying if the logout link is displayed after successful login
+        Assert.assertTrue(dc.logOut.isDisplayed(), "Log Out link is not displayed.");
     }
     public void myClick(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -66,7 +85,7 @@ public class BaseDriver {
         Action aksiyon=aksiyonDriver.moveToElement(element).build();
         aksiyon.perform();
     }
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public static void quitDriver() {
         try {
             Thread.sleep(2000);
@@ -76,6 +95,7 @@ public class BaseDriver {
         if (driver != null) {
             driver.quit();
             driver = null;
+            logger.info("Driver closed.");
         }
     }
 }

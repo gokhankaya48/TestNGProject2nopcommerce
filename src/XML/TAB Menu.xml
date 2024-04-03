@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="my suit" parallel="tests" thread-count="2">
+
+    <test name="test1">
+        <parameter name="BrowserTipi" value="chrome"/>
+        <parameter name="searchText" value="Adobe Photoshop CS4"/>
+        <groups>
+            <run>
+                <include name="TAB Menu"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="US504.VerifyMenuItemsAndSubmenu"/>
+            <class name="US505.VerifyTabMenuAndSearchFunctionality"/>
+            <class name="US506.giftShoppingTest"/>
+            <class name="US507.BuildYourOwnComputerFunctionality"/>
+        </classes>
+    </test>
+</suite>
