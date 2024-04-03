@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="my suit" parallel="tests" thread-count="2">
+
+    <test name="test1">
+        <parameter name="BrowserTipi" value="chrome"/>
+        <parameter name="searchText" value="Adobe Photoshop CS4"/>
+        <groups>
+            <run>
+                <include name="Smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="US501.UserRegistration"/>
+            <class name="US502.SuccessfulLogin"/>
+            <class name="US503.InvalidLoginAttempt"/>
+            <class name="US508.SearchBoxFunctionality"/>
+        </classes>
+    </test>
+</suite>

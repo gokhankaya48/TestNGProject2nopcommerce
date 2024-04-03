@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="my suit" parallel="tests" thread-count="2">
+
+    <test name="test1">
+        <parameter name="BrowserTipi" value="chrome"/>
+        <parameter name="product" value="Apple MacBook Pro 13-inch"/>
+        <groups>
+            <run>
+                <include name="Regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="US505.VerifyTabMenuAndSearchFunctionality"/>
+            <class name="US508.SearchBoxFunctionality"/>
+        </classes>
+    </test>
+</suite>
